@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const constants = require("./constants");
-const Course = require("../models/course.js");
-const data = require("../data/course.js");
-const sanitize = require("mongo-sanitize");
-const HrWise = require("../models/register.js");
+// const Course = require("../models/course.js");
+// const data = require("../data/course.js");
+// const sanitize = require("mongo-sanitize");
+// const HrWise = require("../models/register.js");
 
 const initializeDBConnection = async () => {
   try {
@@ -23,73 +23,73 @@ const initializeDBConnection = async () => {
     // console.log("Course data seeded successfully!");
 
     // create course distribution based on 2hr per day, 4 hr per day, 6 hr perday distribution
-    console.log("Creating course distribution...");
-    await HrWise.deleteMany();
-    const result = await Course.find({ course: "Java" });
+    // console.log("Creating course distribution...");
+    // await HrWise.deleteMany();
+    // const result = await Course.find({ course: "Java" });
 
-    const hrwise2 = await HrWise.create({ hrsPerDay: 2 });
-    const hrwise4 = await HrWise.create({ hrsPerDay: 4 });
-    const hrwise6 = await HrWise.create({ hrsPerDay: 6 });
-    let currentDay = 1,
-      currentCourse = 0,
-      currentHr = 0;
-    let scheduledCourses = { day: 1, courses: [] };
-    // for 2 hr per day
+    // const hrwise2 = await HrWise.create({ hrsPerDay: 2 });
+    // const hrwise4 = await HrWise.create({ hrsPerDay: 4 });
+    // const hrwise6 = await HrWise.create({ hrsPerDay: 6 });
+    // let currentDay = 1,
+    //   currentCourse = 0,
+    //   currentHr = 0;
+    // let scheduledCourses = { day: 1, courses: [] };
+    // // for 2 hr per day
 
-    while (currentCourse < result[0].syllabus.length) {
-      if (currentHr + result[0].syllabus[currentCourse].duration <= 120) {
-        scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
-        currentHr += result[0].syllabus[currentCourse].duration;
-        currentCourse++;
-      } else {
-        hrwise2.schedule.push(scheduledCourses);
-        currentDay++;
-        scheduledCourses = { day: currentDay, courses: [] };
-        currentHr = 0;
-      }
-    }
-    scheduledCourses = { day: 1, courses: [] };
-    currentHr = 0;
-    currentCourse = 0;
-    currentDay = 1;
+    // while (currentCourse < result[0].syllabus.length) {
+    //   if (currentHr + result[0].syllabus[currentCourse].duration <= 120) {
+    //     scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
+    //     currentHr += result[0].syllabus[currentCourse].duration;
+    //     currentCourse++;
+    //   } else {
+    //     hrwise2.schedule.push(scheduledCourses);
+    //     currentDay++;
+    //     scheduledCourses = { day: currentDay, courses: [] };
+    //     currentHr = 0;
+    //   }
+    // }
+    // scheduledCourses = { day: 1, courses: [] };
+    // currentHr = 0;
+    // currentCourse = 0;
+    // currentDay = 1;
 
-    // for 4 hr per day
-    while (currentCourse < result[0].syllabus.length) {
-      if (currentHr + result[0].syllabus[currentCourse].duration <= 240) {
-        scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
-        currentHr += result[0].syllabus[currentCourse].duration;
-        currentCourse++;
-      } else {
-        hrwise4.schedule.push(scheduledCourses);
-        currentDay++;
-        scheduledCourses = { day: currentDay, courses: [] };
-        currentHr = 0;
-      }
-    }
-    scheduledCourses = { day: 1, courses: [] };
-    currentHr = 0;
-    currentCourse = 0;
-    currentDay = 1;
-    // for 6 hr per day
+    // // for 4 hr per day
+    // while (currentCourse < result[0].syllabus.length) {
+    //   if (currentHr + result[0].syllabus[currentCourse].duration <= 240) {
+    //     scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
+    //     currentHr += result[0].syllabus[currentCourse].duration;
+    //     currentCourse++;
+    //   } else {
+    //     hrwise4.schedule.push(scheduledCourses);
+    //     currentDay++;
+    //     scheduledCourses = { day: currentDay, courses: [] };
+    //     currentHr = 0;
+    //   }
+    // }
+    // scheduledCourses = { day: 1, courses: [] };
+    // currentHr = 0;
+    // currentCourse = 0;
+    // currentDay = 1;
+    // // for 6 hr per day
 
-    while (currentCourse < result[0].syllabus.length) {
-      if (currentHr + result[0].syllabus[currentCourse].duration <= 360) {
-        scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
-        currentHr += result[0].syllabus[currentCourse].duration;
-        currentCourse++;
-      } else {
-        hrwise6.schedule.push(scheduledCourses);
-        currentDay++;
-        scheduledCourses = { day: currentDay, courses: [] };
-        currentHr = 0;
-      }
-    }
+    // while (currentCourse < result[0].syllabus.length) {
+    //   if (currentHr + result[0].syllabus[currentCourse].duration <= 360) {
+    //     scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
+    //     currentHr += result[0].syllabus[currentCourse].duration;
+    //     currentCourse++;
+    //   } else {
+    //     hrwise6.schedule.push(scheduledCourses);
+    //     currentDay++;
+    //     scheduledCourses = { day: currentDay, courses: [] };
+    //     currentHr = 0;
+    //   }
+    // }
 
-    await hrwise2.save();
+    // await hrwise2.save();
 
-    await hrwise4.save();
+    // await hrwise4.save();
 
-    await hrwise6.save();
+    // await hrwise6.save();
 
     console.log("Course distribution created successfully!");
   } catch (error) {
