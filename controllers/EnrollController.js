@@ -19,7 +19,7 @@ router.post("/enroll", async (req, res) => {
       "schedule"
     );
 
-    const currDate = moment(populatedEnroll.date);
+    const currDate = moment(populatedEnroll.date).add(1, "days");
 
     for (let i = 0; i < populatedEnroll.schedule.schedule.length; i++) {
       // console.log(currDate.day());
