@@ -22,7 +22,10 @@ const initializeDBConnection = async () => {
     // await result.save();
     // console.log("Course data seeded successfully!");
 
+
     // create course distribution based on 2hr per day, 4 hr per day, 6 hr perday distribution
+
+
     // console.log("Creating course distribution...");
     // await HrWise.deleteMany();
     // const result = await Course.find({ course: "Java" });
@@ -34,6 +37,8 @@ const initializeDBConnection = async () => {
     //   currentCourse = 0,
     //   currentHr = 0;
     // let scheduledCourses = { day: 1, courses: [] };
+
+
     // // for 2 hr per day
 
     // while (currentCourse < result[0].syllabus.length) {
@@ -53,7 +58,9 @@ const initializeDBConnection = async () => {
     // currentCourse = 0;
     // currentDay = 1;
 
+
     // // for 4 hr per day
+
     // while (currentCourse < result[0].syllabus.length) {
     //   if (currentHr + result[0].syllabus[currentCourse].duration <= 240) {
     //     scheduledCourses.courses.push(result[0].syllabus[currentCourse]);
@@ -70,6 +77,8 @@ const initializeDBConnection = async () => {
     // currentHr = 0;
     // currentCourse = 0;
     // currentDay = 1;
+
+    
     // // for 6 hr per day
 
     // while (currentCourse < result[0].syllabus.length) {
@@ -91,7 +100,10 @@ const initializeDBConnection = async () => {
 
     // await hrwise6.save();
 
-    console.log("Course distribution created successfully!");
+    // console.log("Course distribution created successfully!");
+
+
+
   } catch (error) {
     console.error("Connection to database failed.", error.message);
   }

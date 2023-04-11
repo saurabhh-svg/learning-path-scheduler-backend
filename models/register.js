@@ -7,6 +7,7 @@ const HrWiseSchema = new mongoose.Schema({
   schedule: [
     {
       day: Number,
+      date: Date,
       courses: [
         {
           cid: Number,
